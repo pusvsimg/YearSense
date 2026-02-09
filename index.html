@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YearSense - 年味指数检测器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧧 YearSense</h1>
+            <p class="subtitle">年味指数检测器</p>
+            <p class="description">用算法计算你今年有多像过年</p>
+        </header>
+
+        <div class="card">
+            <h2>📊 年味测评</h2>
+            <div class="questions">
+                <div class="question">
+                    <label>🏠 是否回家过年？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="home" data-value="yes">是</button>
+                        <button class="option-btn" data-question="home" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>🧧 是否发红包？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="redpacket" data-value="yes">是</button>
+                        <button class="option-btn" data-question="redpacket" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>💼 是否春节加班？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="overtime" data-value="yes">是</button>
+                        <button class="option-btn" data-question="overtime" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>💍 是否被催婚催生？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="pressure" data-value="yes">是</button>
+                        <button class="option-btn" data-question="pressure" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>📺 是否看春晚？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="chunwan" data-value="yes">是</button>
+                        <button class="option-btn" data-question="chunwan" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>🧨 是否放烟花/鞭炮？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="fireworks" data-value="yes">是</button>
+                        <button class="option-btn" data-question="fireworks" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>🥟 是否吃饺子？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="dumplings" data-value="yes">是</button>
+                        <button class="option-btn" data-question="dumplings" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>📝 是否贴春联？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="couplets" data-value="yes">是</button>
+                        <button class="option-btn" data-question="couplets" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>👔 是否穿新衣？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="newclothes" data-value="yes">是</button>
+                        <button class="option-btn" data-question="newclothes" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>👨‍👩‍👧‍👦 是否走亲戚？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="visit" data-value="yes">是</button>
+                        <button class="option-btn" data-question="visit" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>🎴 是否打麻将/打牌？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="mahjong" data-value="yes">是</button>
+                        <button class="option-btn" data-question="mahjong" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>🍲 是否吃年夜饭？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="reunion" data-value="yes">是</button>
+                        <button class="option-btn" data-question="reunion" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>🙏 是否拜年？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="paynewyear" data-value="yes">是</button>
+                        <button class="option-btn" data-question="paynewyear" data-value="no">否</button>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label>🧧 是否收到红包？</label>
+                    <div class="options">
+                        <button class="option-btn" data-question="receive" data-value="yes">是</button>
+                        <button class="option-btn" data-question="receive" data-value="no">否</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="calculateBtn" class="calculate-btn">计算年味指数 ✨</button>
+        </div>
+
+        <div id="result" class="result-card hidden">
+            <h2>📈 年味指数结果</h2>
+            <div class="score-display">
+                <div class="score-circle">
+                    <span id="scoreValue">0%</span>
+                </div>
+            </div>
+            <div class="level-display">
+                <p>年味等级：<span id="levelTitle" class="level-title">--</span></p>
+                <p id="levelDescription" class="level-description">--</p>
+            </div>
+            <button id="resetBtn" class="reset-btn">重新测评 🔄</button>
+        </div>
+
+        <footer>
+            <p>🎊 2026 丙午马年新春快乐！</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
