@@ -2,154 +2,96 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>YearSense - 年味指数检测器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🧧 YearSense</h1>
-            <p class="subtitle">年味指数检测器</p>
-            <p class="description">用算法计算你今年有多像过年</p>
-        </header>
+    <canvas id="particleCanvas"></canvas>
+    <div class="noise-overlay"></div>
 
-        <div class="card">
-            <h2>📊 年味测评</h2>
-            <div class="questions">
-                <div class="question">
-                    <label>🏠 是否回家过年？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="home" data-value="yes">是</button>
-                        <button class="option-btn" data-question="home" data-value="no">否</button>
-                    </div>
+    <div class="app">
+        <!-- ===== WELCOME SCREEN ===== -->
+        <section id="welcomeScreen" class="screen screen--active">
+            <div class="welcome">
+                <div class="lanterns">
+                    <span class="lantern lantern--l">🏮</span>
+                    <span class="lantern lantern--r">🏮</span>
                 </div>
-
-                <div class="question">
-                    <label>🧧 是否发红包？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="redpacket" data-value="yes">是</button>
-                        <button class="option-btn" data-question="redpacket" data-value="no">否</button>
-                    </div>
+                <div class="welcome__brand">
+                    <span class="welcome__icon">🧧</span>
+                    <h1 class="welcome__title">YearSense</h1>
                 </div>
+                <p class="welcome__subtitle">年味指数检测器</p>
+                <p class="welcome__desc">14道题，测出你今年的年味浓度</p>
+                <div class="welcome__deco"><span>✦</span><span>✦</span><span>✦</span></div>
+                <button id="startBtn" class="btn-start">
+                    <span class="btn-start__shine"></span>
+                    <span class="btn-start__text">开始测评</span>
+                </button>
+            </div>
+        </section>
 
-                <div class="question">
-                    <label>💼 是否春节加班？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="overtime" data-value="yes">是</button>
-                        <button class="option-btn" data-question="overtime" data-value="no">否</button>
+        <!-- ===== QUIZ SCREEN ===== -->
+        <section id="quizScreen" class="screen">
+            <div class="quiz-hud">
+                <div class="quiz-hud__top">
+                    <button id="prevBtn" class="nav-arrow nav-arrow--prev" disabled>‹</button>
+                    <div class="quiz-hud__counter">
+                        <span id="currentNum" class="hud-num">1</span>
+                        <span class="hud-sep">/</span>
+                        <span class="hud-total">14</span>
                     </div>
+                    <button id="nextBtn" class="nav-arrow nav-arrow--next" disabled>›</button>
                 </div>
-
-                <div class="question">
-                    <label>💍 是否被催婚催生？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="pressure" data-value="yes">是</button>
-                        <button class="option-btn" data-question="pressure" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>📺 是否看春晚？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="chunwan" data-value="yes">是</button>
-                        <button class="option-btn" data-question="chunwan" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>🧨 是否放烟花/鞭炮？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="fireworks" data-value="yes">是</button>
-                        <button class="option-btn" data-question="fireworks" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>🥟 是否吃饺子？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="dumplings" data-value="yes">是</button>
-                        <button class="option-btn" data-question="dumplings" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>📝 是否贴春联？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="couplets" data-value="yes">是</button>
-                        <button class="option-btn" data-question="couplets" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>👔 是否穿新衣？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="newclothes" data-value="yes">是</button>
-                        <button class="option-btn" data-question="newclothes" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>👨‍👩‍👧‍👦 是否走亲戚？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="visit" data-value="yes">是</button>
-                        <button class="option-btn" data-question="visit" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>🎴 是否打麻将/打牌？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="mahjong" data-value="yes">是</button>
-                        <button class="option-btn" data-question="mahjong" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>🍲 是否吃年夜饭？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="reunion" data-value="yes">是</button>
-                        <button class="option-btn" data-question="reunion" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>🙏 是否拜年？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="paynewyear" data-value="yes">是</button>
-                        <button class="option-btn" data-question="paynewyear" data-value="no">否</button>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label>🧧 是否收到红包？</label>
-                    <div class="options">
-                        <button class="option-btn" data-question="receive" data-value="yes">是</button>
-                        <button class="option-btn" data-question="receive" data-value="no">否</button>
-                    </div>
+                <div class="dots" id="dots"></div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
                 </div>
             </div>
 
-            <button id="calculateBtn" class="calculate-btn">计算年味指数 ✨</button>
-        </div>
+            <div class="carousel" id="carousel">
+                <div class="carousel__track" id="track"></div>
+            </div>
 
-        <div id="result" class="result-card hidden">
-            <h2>📈 年味指数结果</h2>
-            <div class="score-display">
-                <div class="score-circle">
-                    <span id="scoreValue">0%</span>
+            <button id="submitBtn" class="btn-submit hidden">
+                <span class="btn-submit__shine"></span>
+                <span class="btn-submit__text">查看年味报告</span>
+            </button>
+        </section>
+
+        <!-- ===== RESULT SCREEN ===== -->
+        <section id="resultScreen" class="screen">
+            <div class="result">
+                <h2 class="result__heading">年味指数报告</h2>
+                <div class="score-display">
+                    <svg class="score-ring" viewBox="0 0 200 200">
+                        <defs>
+                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#E53935"/>
+                                <stop offset="100%" stop-color="#FFD700"/>
+                            </linearGradient>
+                        </defs>
+                        <circle class="ring-bg" cx="100" cy="100" r="85"/>
+                        <circle id="scoreRing" class="ring-fill" cx="100" cy="100" r="85"/>
+                    </svg>
+                    <div class="score-text">
+                        <span id="scoreValue" class="score-number">0</span>
+                        <span class="score-unit">分</span>
+                    </div>
                 </div>
+                <div class="level-display">
+                    <div id="levelTitle" class="level-title">--</div>
+                    <p id="levelDescription" class="level-desc">--</p>
+                </div>
+                <div id="bonusTags" class="bonus-tags"></div>
+                <button id="resetBtn" class="btn-reset">重新测评</button>
             </div>
-            <div class="level-display">
-                <p>年味等级：<span id="levelTitle" class="level-title">--</span></p>
-                <p id="levelDescription" class="level-description">--</p>
-            </div>
-            <button id="resetBtn" class="reset-btn">重新测评 🔄</button>
-        </div>
-
-        <footer>
-            <p>🎊 2026 丙午马年新春快乐！</p>
-        </footer>
+            <footer><p>🎊 2026 丙午马年新春快乐</p></footer>
+        </section>
     </div>
 
     <script src="script.js"></script>
